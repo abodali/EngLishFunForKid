@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4a940b" >
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <ImageView
+            android:id="@+id/IvAudioShape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:src="@drawable/sound_on" />
+
+        <TextView
+            android:id="@+id/textOnOffShape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2.0"
+            android:gravity="center"
+            android:text="Triangle"
+            android:textColor="#ffffff"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/IvTextOnOffShape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.48"
+            android:src="@drawable/text_on" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout1"
+        android:gravity="center"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/IvShape"
+            android:layout_width="340dp"
+            android:layout_height="320dp"
+            android:src="@drawable/pack3d1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout2"
+        android:layout_alignParentBottom="true"
+        android:weightSum="4"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/IvPreviousShape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/backward64" />
+
+        <ImageView
+            android:id="@+id/IvList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/eject64" />
+
+        <ImageView
+            android:id="@+id/IvRepeatShape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/play64_" />
+
+        <ImageView
+            android:id="@+id/IvNextShape"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/forward64" />
+    </LinearLayout>
+
+</RelativeLayout>
