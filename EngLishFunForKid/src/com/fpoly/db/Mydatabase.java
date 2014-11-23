@@ -49,26 +49,6 @@ public class Mydatabase extends SQLiteOpenHelper {
 	 * database.
 	 */
 
-	// //get single english
-	// public English Get_EnglishDetail(String name_image) {
-	// SQLiteDatabase db = this.getReadableDatabase();
-	// Cursor cur = db.query(TABLE_ENGLISH, new String[] { KEY_ID,
-	// KEY_NAMEIMAGE, KEY_NAMEAUDIO, KEY_DECRIPTION }, KEY_NAMEIMAGE
-	// + "=?", new String[] { name_image }, null, null, null, null);
-	// if(cur != null && cur.moveToFirst()){
-	// English eng = new English();
-	// eng.setImage(cur.getInt(1));
-	// eng.setAudio(cur.getString(2));
-	// eng.setDecription(cur.getString(3));
-	// // return english
-	// cur.close();
-	// db.close();
-	//
-	// return eng;
-	//
-	// }
-	// return null;
-	// }
 	// get all in sqlite
 	public ArrayList<English> GetAllInEnglish() {
 		ArrayList<English> listEnglish = new ArrayList<English>();
@@ -91,33 +71,33 @@ public class Mydatabase extends SQLiteOpenHelper {
 		return listEnglish;
 	}
 
-	// truy van theo id
-	public Cursor getId(int id) {
-		Cursor cursor = db.rawQuery("SELECT * FROM TABLE_ENGLISH WHERE id = '"
-				+ id + "' ;", null);
-		if (cursor != null) {
+//	// truy van theo id
+//	public Cursor getId(int id) {
+//		Cursor cursor = db.rawQuery("SELECT * FROM TABLE_ENGLISH WHERE id = '"
+//				+ id + "' ;", null);
+//		if (cursor != null) {
+//
+//			cursor.moveToFirst();
+//
+//		}
+//		return cursor;
+//	}
+//
+//	// truy van theo ten image
+//	public Cursor getImage(String img) {
+//		Cursor cursor = db.rawQuery(
+//				"SELECT * FROM TABLE_ENGLISH WHERE name_image = '" + img
+//						+ "' ;", null);
+//		if (cursor != null) {
+//
+//			cursor.moveToFirst();
+//
+//		}
+//		return cursor;
+//
+//	}
 
-			cursor.moveToFirst();
-
-		}
-		return cursor;
-	}
-
-	// truy van theo ten image
-	public Cursor getImage(String img) {
-		Cursor cursor = db.rawQuery(
-				"SELECT * FROM TABLE_ENGLISH WHERE name_image = '" + img
-						+ "' ;", null);
-		if (cursor != null) {
-
-			cursor.moveToFirst();
-
-		}
-		return cursor;
-
-	}
-
-	// truye van
+	// truy van
 	public void CopyDatabaseFromAsset() throws IOException {
 		InputStream in = ctx.getAssets().open(DATABASE_NAME);
 		Log.d("sample", "Start copy===============================");

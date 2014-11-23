@@ -858,10 +858,11 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f07000a;
+        public static final int abc_search_url_text_holo=0x7f07000b;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int black=0x7f07000a;
         public static final int counter_text_bg=0x7f070007;
         public static final int counter_text_color=0x7f070008;
         public static final int green=0x7f070009;
@@ -1123,55 +1124,55 @@ containing a value of this type.
         public static final int text_on=0x7f020084;
     }
     public static final class id {
-        public static final int IvAnimal=0x7f050047;
-        public static final int IvAudio=0x7f050085;
-        public static final int IvAudioAnimal=0x7f050043;
-        public static final int IvAudioBody=0x7f05004d;
-        public static final int IvAudioColor=0x7f050054;
-        public static final int IvAudioDay=0x7f05005b;
-        public static final int IvAudioFruit=0x7f050062;
-        public static final int IvAudioLetter=0x7f05007e;
-        public static final int IvAudioShape=0x7f05008c;
-        public static final int IvBody=0x7f050050;
-        public static final int IvColor=0x7f050057;
-        public static final int IvDay=0x7f05005e;
-        public static final int IvFruit=0x7f050065;
-        public static final int IvLetter=0x7f050081;
-        public static final int IvList=0x7f05004a;
-        public static final int IvNext=0x7f05008b;
-        public static final int IvNextAnimal=0x7f05004c;
-        public static final int IvNextBody=0x7f050053;
-        public static final int IvNextColor=0x7f05005a;
-        public static final int IvNextDay=0x7f050061;
-        public static final int IvNextFruit=0x7f050068;
-        public static final int IvNextLetter=0x7f050084;
-        public static final int IvNextShape=0x7f050092;
-        public static final int IvNumber=0x7f050088;
-        public static final int IvPrevious=0x7f050089;
-        public static final int IvPreviousAnimal=0x7f050049;
-        public static final int IvPreviousBody=0x7f050051;
-        public static final int IvPreviousColor=0x7f050058;
-        public static final int IvPreviousDay=0x7f05005f;
-        public static final int IvPreviousFruit=0x7f050066;
-        public static final int IvPreviousLetter=0x7f050082;
-        public static final int IvPreviousShape=0x7f050090;
-        public static final int IvRepeat=0x7f05008a;
-        public static final int IvRepeatAnimal=0x7f05004b;
-        public static final int IvRepeatBody=0x7f050052;
-        public static final int IvRepeatColor=0x7f050059;
-        public static final int IvRepeatDay=0x7f050060;
-        public static final int IvRepeatFruit=0x7f050067;
-        public static final int IvRepeatLetter=0x7f050083;
-        public static final int IvRepeatShape=0x7f050091;
-        public static final int IvShape=0x7f05008f;
-        public static final int IvTextOnOff=0x7f050087;
-        public static final int IvTextOnOffAnimal=0x7f050045;
-        public static final int IvTextOnOffBody=0x7f05004f;
-        public static final int IvTextOnOffColor=0x7f050056;
-        public static final int IvTextOnOffDay=0x7f05005d;
-        public static final int IvTextOnOffFruit=0x7f050064;
-        public static final int IvTextOnOffLetter=0x7f050080;
-        public static final int IvTextOnOffShape=0x7f05008e;
+        public static final int IvAnimal=0x7f050048;
+        public static final int IvAudio=0x7f050086;
+        public static final int IvAudioAnimal=0x7f050044;
+        public static final int IvAudioBody=0x7f05004e;
+        public static final int IvAudioColor=0x7f050055;
+        public static final int IvAudioDay=0x7f05005c;
+        public static final int IvAudioFruit=0x7f050063;
+        public static final int IvAudioLetter=0x7f05007f;
+        public static final int IvAudioShape=0x7f05008d;
+        public static final int IvBody=0x7f050051;
+        public static final int IvColor=0x7f050058;
+        public static final int IvDay=0x7f05005f;
+        public static final int IvFruit=0x7f050066;
+        public static final int IvLetter=0x7f050082;
+        public static final int IvList=0x7f05004b;
+        public static final int IvNext=0x7f05008c;
+        public static final int IvNextAnimal=0x7f05004d;
+        public static final int IvNextBody=0x7f050054;
+        public static final int IvNextColor=0x7f05005b;
+        public static final int IvNextDay=0x7f050062;
+        public static final int IvNextFruit=0x7f050069;
+        public static final int IvNextLetter=0x7f050085;
+        public static final int IvNextShape=0x7f050093;
+        public static final int IvNumber=0x7f050089;
+        public static final int IvPrevious=0x7f05008a;
+        public static final int IvPreviousAnimal=0x7f05004a;
+        public static final int IvPreviousBody=0x7f050052;
+        public static final int IvPreviousColor=0x7f050059;
+        public static final int IvPreviousDay=0x7f050060;
+        public static final int IvPreviousFruit=0x7f050067;
+        public static final int IvPreviousLetter=0x7f050083;
+        public static final int IvPreviousShape=0x7f050091;
+        public static final int IvRepeat=0x7f05008b;
+        public static final int IvRepeatAnimal=0x7f05004c;
+        public static final int IvRepeatBody=0x7f050053;
+        public static final int IvRepeatColor=0x7f05005a;
+        public static final int IvRepeatDay=0x7f050061;
+        public static final int IvRepeatFruit=0x7f050068;
+        public static final int IvRepeatLetter=0x7f050084;
+        public static final int IvRepeatShape=0x7f050092;
+        public static final int IvShape=0x7f050090;
+        public static final int IvTextOnOff=0x7f050088;
+        public static final int IvTextOnOffAnimal=0x7f050046;
+        public static final int IvTextOnOffBody=0x7f050050;
+        public static final int IvTextOnOffColor=0x7f050057;
+        public static final int IvTextOnOffDay=0x7f05005e;
+        public static final int IvTextOnOffFruit=0x7f050065;
+        public static final int IvTextOnOffLetter=0x7f050081;
+        public static final int IvTextOnOffShape=0x7f05008f;
         public static final int MenuList=0x7f05003e;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
@@ -1203,22 +1204,23 @@ containing a value of this type.
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int ivAnimals=0x7f05006f;
-        public static final int ivBodyParts=0x7f05007a;
-        public static final int ivColors=0x7f05006a;
-        public static final int ivDays=0x7f050073;
-        public static final int ivFruits=0x7f050074;
-        public static final int ivLetters=0x7f050079;
-        public static final int ivNumbers=0x7f050069;
-        public static final int ivShapes=0x7f05006e;
-        public static final int layout1=0x7f050042;
-        public static final int layout2=0x7f050046;
-        public static final int layout3=0x7f050048;
-        public static final int layout4=0x7f050078;
+        public static final int ivAnimals=0x7f050070;
+        public static final int ivBodyParts=0x7f05007b;
+        public static final int ivColors=0x7f05006b;
+        public static final int ivDays=0x7f050074;
+        public static final int ivFruits=0x7f050075;
+        public static final int ivLetters=0x7f05007a;
+        public static final int ivNumbers=0x7f05006a;
+        public static final int ivShapes=0x7f05006f;
+        public static final int layout1=0x7f050043;
+        public static final int layout2=0x7f050047;
+        public static final int layout3=0x7f050049;
+        public static final int layout4=0x7f050079;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
+        public static final int lvDialog=0x7f05003f;
         public static final int main_layout=0x7f05003c;
-        public static final int menuListHeader=0x7f05003f;
+        public static final int menuListHeader=0x7f050040;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
@@ -1243,30 +1245,31 @@ containing a value of this type.
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int text1=0x7f05006b;
-        public static final int text2=0x7f050070;
-        public static final int text3=0x7f050075;
-        public static final int text4=0x7f05007b;
-        public static final int textOnOff=0x7f050086;
-        public static final int textOnOffAnimal=0x7f050044;
-        public static final int textOnOffBody=0x7f05004e;
-        public static final int textOnOffColor=0x7f050055;
-        public static final int textOnOffDay=0x7f05005c;
-        public static final int textOnOffFruit=0x7f050063;
-        public static final int textOnOffLetter=0x7f05007f;
-        public static final int textOnOffShape=0x7f05008d;
+        public static final int text1=0x7f05006c;
+        public static final int text2=0x7f050071;
+        public static final int text3=0x7f050076;
+        public static final int text4=0x7f05007c;
+        public static final int textOnOff=0x7f050087;
+        public static final int textOnOffAnimal=0x7f050045;
+        public static final int textOnOffBody=0x7f05004f;
+        public static final int textOnOffColor=0x7f050056;
+        public static final int textOnOffDay=0x7f05005d;
+        public static final int textOnOffFruit=0x7f050064;
+        public static final int textOnOffLetter=0x7f050080;
+        public static final int textOnOffShape=0x7f05008e;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
-        public static final int tvDiv=0x7f050041;
-        public static final int tvHeader=0x7f050040;
-        public static final int txtAnimals=0x7f050072;
-        public static final int txtBody=0x7f05007d;
-        public static final int txtColors=0x7f05006d;
-        public static final int txtDays=0x7f050076;
-        public static final int txtFruits=0x7f050077;
-        public static final int txtLetters=0x7f05007c;
-        public static final int txtNumbers=0x7f05006c;
-        public static final int txtShapes=0x7f050071;
+        public static final int tvDiv=0x7f050042;
+        public static final int tvHeader=0x7f050041;
+        public static final int txtAnimals=0x7f050073;
+        public static final int txtBody=0x7f05007e;
+        public static final int txtColors=0x7f05006e;
+        public static final int txtDays=0x7f050077;
+        public static final int txtDetail=0x7f050094;
+        public static final int txtFruits=0x7f050078;
+        public static final int txtLetters=0x7f05007d;
+        public static final int txtNumbers=0x7f05006d;
+        public static final int txtShapes=0x7f050072;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1322,18 +1325,20 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int menu_header=0x7f030019;
-        public static final int menu_item=0x7f03001a;
-        public static final int screen_animal=0x7f03001b;
-        public static final int screen_body=0x7f03001c;
-        public static final int screen_color=0x7f03001d;
-        public static final int screen_day=0x7f03001e;
-        public static final int screen_fruit=0x7f03001f;
-        public static final int screen_home=0x7f030020;
-        public static final int screen_letter=0x7f030021;
-        public static final int screen_number=0x7f030022;
-        public static final int screen_shape=0x7f030023;
-        public static final int support_simple_spinner_dropdown_item=0x7f030024;
+        public static final int list=0x7f030019;
+        public static final int menu_header=0x7f03001a;
+        public static final int menu_item=0x7f03001b;
+        public static final int screen_animal=0x7f03001c;
+        public static final int screen_body=0x7f03001d;
+        public static final int screen_color=0x7f03001e;
+        public static final int screen_day=0x7f03001f;
+        public static final int screen_fruit=0x7f030020;
+        public static final int screen_home=0x7f030021;
+        public static final int screen_letter=0x7f030022;
+        public static final int screen_number=0x7f030023;
+        public static final int screen_shape=0x7f030024;
+        public static final int support_simple_spinner_dropdown_item=0x7f030025;
+        public static final int textview=0x7f030026;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1382,11 +1387,25 @@ containing a value of this type.
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
+
+
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
+
+
+
+
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -1405,6 +1424,8 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0b008c;
+        public static final int CustomDialogTheme=0x7f0b008d;
+        public static final int MyTheme=0x7f0b008e;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0b0063;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -16,11 +17,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.fpoly.adapter.ListAdapter;
 import com.fpoly.db.Mydatabase;
 import com.fpoly.englishfunforkid.R;
 import com.fpoly.object.English;
@@ -35,6 +40,9 @@ public class Shape extends Fragment {
 	int stt = 33;
 	MediaPlayer mp;
 	Context context;
+	ArrayList<English>listNew;
+	AlertDialog listDialog;
+	ListAdapter adpater;
 
 	public Shape() {
 	}
@@ -62,7 +70,7 @@ public class Shape extends Fragment {
 		textOnOffShape = (TextView) rootView.findViewById(R.id.textOnOffShape);
 		IvAudioShape = (ImageView) rootView.findViewById(R.id.IvAudioShape);
 		IvTextOnOffShape = (ImageView) rootView.findViewById(R.id.IvTextOnOffShape);
-		showScreen(33);
+		showScreenShape(33);
 		IvNextShape.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -73,11 +81,9 @@ public class Shape extends Fragment {
 				{
 					stt = 33;
 				}
-				showScreen(stt);
+				showScreenShape(stt);
 			}
 		});
-		// cho xiu
-		// eclipse bị dien
 
 		IvPreviousShape.setOnClickListener(new OnClickListener() {
 
@@ -88,7 +94,7 @@ public class Shape extends Fragment {
 					stt = 43;
 
 				} // }
-				showScreen(stt);
+				showScreenShape(stt);
 
 			}
 		});
@@ -97,7 +103,7 @@ public class Shape extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 
-				showScreen(stt);
+				showScreenShape(stt);
 
 			}
 		});
@@ -109,28 +115,64 @@ public class Shape extends Fragment {
 				playAudio(list.get(stt - 1).getAudio());
 			}
 		});
-		// on click cái imageview ẩn text đó
-		// ngang với cái phát am thanh ok
+		
 		IvTextOnOffShape.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// chay thu xem
+				
 				hide();
 
 			}
 		});
+		// show list view
+				IvList.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(root);
+						mydb = new Mydatabase(root);
+						listNew = new ArrayList<English>();
+						for (int i = 32; i < 43; i++) {
+
+							listNew.add(list.get(i));
+
+						}
+						ListView listTail = new ListView(root);
+						listTail.setAdapter(new ListAdapter(root
+								.getApplicationContext(), listNew));
+						listTail.setOnItemClickListener(new OnItemClickListener() {
+
+							@Override
+							public void onItemClick(AdapterView<?> arg0, View arg1,
+									int position, long arg3) {
+
+								if (listDialog.isShowing()) {
+									listDialog.dismiss();
+
+								}
+
+								showScreenShape(position + 33);
+
+							}
+						});
+						builder.setView(listTail);
+						listDialog = builder.create();
+						listDialog.show();
+
+					}
+				});
 	}
 	boolean kt = true;
 
-	// chờ tui 1 tí
+	
 	public void hide() {
 		if (kt == true) {
 			textOnOffShape.setText("");
 			kt = false;
 		} else {
 			textOnOffShape.setText(list.get(stt - 1).getDecription());
-			// chay
+			
 			kt = true;
 
 		}
@@ -154,7 +196,7 @@ public class Shape extends Fragment {
 	}
 
 	// show screen
-	public void showScreen(int stt) {
+	public void showScreenShape(int stt) {
 		English english = new English();
 		english = list.get(stt - 1);
 		textOnOffShape.setText(english.getDecription());
@@ -176,7 +218,7 @@ public class Shape extends Fragment {
 			mp.prepare();
 
 			mp.start();
-			mp.setVolume(10, 10);
+			mp.setVolume(100, 100);
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

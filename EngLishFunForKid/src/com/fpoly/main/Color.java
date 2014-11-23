@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -20,9 +21,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.fpoly.adapter.ListAdapter;
 import com.fpoly.db.Mydatabase;
 import com.fpoly.englishfunforkid.R;
 import com.fpoly.object.English;
@@ -31,14 +36,17 @@ import com.fpoly.object.English;
 public class Color extends Fragment {
 	Activity root;
 	Mydatabase mydb;
-	ImageView IvPreviousColor, IvList, IvRepeatColor, IvNextColor, IvColor, IvAudioColor,
-			IvTextOnOffColor;
+	ImageView IvPreviousColor, IvList, IvRepeatColor, IvNextColor, IvColor,
+			IvAudioColor, IvTextOnOffColor;
 	TextView textOnOffColor;
 	int stt = 21;
 	private SQLiteDatabase database;
 	ArrayList<English> list;
+	ArrayList<English> listNew;
 	Context context;
 	MediaPlayer mp;
+	AlertDialog listDialog;
+	ListAdapter adapter;
 
 	public Color() {
 	}
@@ -61,14 +69,16 @@ public class Color extends Fragment {
 	}
 
 	public void init(View rootView) {
-		IvPreviousColor = (ImageView) rootView.findViewById(R.id.IvPreviousColor);
+		IvPreviousColor = (ImageView) rootView
+				.findViewById(R.id.IvPreviousColor);
 		IvList = (ImageView) rootView.findViewById(R.id.IvList);
 		IvRepeatColor = (ImageView) rootView.findViewById(R.id.IvRepeatColor);
 		IvNextColor = (ImageView) rootView.findViewById(R.id.IvNextColor);
 		IvColor = (ImageView) rootView.findViewById(R.id.IvColor);
 		textOnOffColor = (TextView) rootView.findViewById(R.id.textOnOffColor);
 		IvAudioColor = (ImageView) rootView.findViewById(R.id.IvAudioColor);
-		IvTextOnOffColor = (ImageView) rootView.findViewById(R.id.IvTextOnOffColor);
+		IvTextOnOffColor = (ImageView) rootView
+				.findViewById(R.id.IvTextOnOffColor);
 		showScreenColor(21);
 		IvNextColor.setOnClickListener(new OnClickListener() {
 
@@ -83,7 +93,6 @@ public class Color extends Fragment {
 				showScreenColor(stt);
 			}
 		});
-		
 
 		IvPreviousColor.setOnClickListener(new OnClickListener() {
 
@@ -95,7 +104,6 @@ public class Color extends Fragment {
 
 				} // }
 				showScreenColor(stt);
-				
 
 			}
 		});
@@ -116,13 +124,50 @@ public class Color extends Fragment {
 				playAudio(list.get(stt - 1).getAudio());
 			}
 		});
-		
+
 		IvTextOnOffColor.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// chay thu xem
+
 				hide();
+
+			}
+		});
+		// show list view
+		IvList.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(root);
+				mydb = new Mydatabase(root);
+				listNew = new ArrayList<English>();
+				for (int i = 20; i < 32; i++) {
+
+					listNew.add(list.get(i));
+
+				}
+				ListView listTail = new ListView(root);
+				listTail.setAdapter(new ListAdapter(root
+						.getApplicationContext(), listNew));
+				listTail.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int position, long arg3) {
+
+						if (listDialog.isShowing()) {
+							listDialog.dismiss();
+
+						}
+
+						showScreenColor(position + 21);
+
+					}
+				});
+				builder.setView(listTail);
+				listDialog = builder.create();
+				listDialog.show();
 
 			}
 		});
@@ -131,14 +176,14 @@ public class Color extends Fragment {
 	//
 	boolean kt = true;
 
-	// chờ tui 1 tí
+	
 	public void hide() {
 		if (kt == true) {
 			textOnOffColor.setText("");
 			kt = false;
 		} else {
 			textOnOffColor.setText(list.get(stt - 1).getDecription());
-			// chay
+			
 			kt = true;
 
 		}
@@ -150,9 +195,10 @@ public class Color extends Fragment {
 		// load image
 		try {
 			// get input stream
-			InputStream ims = assetManager.open("images/" + nameImageColor  + ".png");
+			InputStream ims = assetManager.open("images/" + nameImageColor
+					+ ".png");
 			Bitmap bitmap = BitmapFactory.decodeStream(ims);
-			// chay xem
+			
 			// set image to ImageView
 			IvColor.setImageBitmap(bitmap);
 		} catch (IOException ex) {
@@ -164,11 +210,11 @@ public class Color extends Fragment {
 	// show screen
 	public void showScreenColor(int stt) {
 		English english = new English();
-		english = list.get(stt -1 );
+		english = list.get(stt - 1);
 		textOnOffColor.setText(english.getDecription());
 		playAudio(english.getAudio());
 		loadDataFromAssetColor(english.getImage());
-		Log.d("--------",english.getImage());
+		Log.d("--------", english.getImage());
 
 	}
 
@@ -185,7 +231,7 @@ public class Color extends Fragment {
 			mp.prepare();
 
 			mp.start();
-			mp.setVolume(10, 10);
+			mp.setVolume(100, 100);
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

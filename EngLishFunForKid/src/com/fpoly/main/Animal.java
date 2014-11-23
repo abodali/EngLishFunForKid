@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -20,28 +21,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.fpoly.adapter.ListAdapter;
 import com.fpoly.db.Mydatabase;
 import com.fpoly.englishfunforkid.R;
 import com.fpoly.object.English;
 
 @SuppressLint("NewApi")
 public class Animal extends Fragment {
-	
+
 	Activity root;
 	Mydatabase mydb;
-	ImageView IvPreviousAnimal, IvList, IvRepeatAnimal, IvNextAnimal, IvAnimal, IvAudioAnimal,
-			IvTextOnOffAnimal;
+	ImageView IvPreviousAnimal, IvList, IvRepeatAnimal, IvNextAnimal, IvAnimal,
+			IvAudioAnimal, IvTextOnOffAnimal;
 	TextView textOnOffAnimal;
 	int stt = 44;
 	private SQLiteDatabase database;
 	ArrayList<English> list;
 	Context context;
 	MediaPlayer mp;
-	
-	
+	ListAdapter adapter;
+	AlertDialog listDialog;
+	ArrayList<English>listNew;
+
 	public Animal() {
 	}
 
@@ -62,16 +69,20 @@ public class Animal extends Fragment {
 
 		return rootView;
 	}
+
 	public void init(View rootView) {
-		IvPreviousAnimal = (ImageView) rootView.findViewById(R.id.IvPreviousAnimal);
+		IvPreviousAnimal = (ImageView) rootView
+				.findViewById(R.id.IvPreviousAnimal);
 		IvList = (ImageView) rootView.findViewById(R.id.IvList);
 		IvRepeatAnimal = (ImageView) rootView.findViewById(R.id.IvRepeatAnimal);
 		IvNextAnimal = (ImageView) rootView.findViewById(R.id.IvNextAnimal);
 		IvAnimal = (ImageView) rootView.findViewById(R.id.IvAnimal);
-		textOnOffAnimal = (TextView) rootView.findViewById(R.id.textOnOffAnimal);
+		textOnOffAnimal = (TextView) rootView
+				.findViewById(R.id.textOnOffAnimal);
 		IvAudioAnimal = (ImageView) rootView.findViewById(R.id.IvAudioAnimal);
-		IvTextOnOffAnimal = (ImageView) rootView.findViewById(R.id.IvTextOnOffAnimal);
-		showScreenColor(44);
+		IvTextOnOffAnimal = (ImageView) rootView
+				.findViewById(R.id.IvTextOnOffAnimal);
+		showScreenAnimal(44);
 		IvNextAnimal.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -82,10 +93,9 @@ public class Animal extends Fragment {
 				{
 					stt = 44;
 				}
-				showScreenColor(stt);
+				showScreenAnimal(stt);
 			}
 		});
-		
 
 		IvPreviousAnimal.setOnClickListener(new OnClickListener() {
 
@@ -96,8 +106,7 @@ public class Animal extends Fragment {
 					stt = 63;
 
 				} // }
-				showScreenColor(stt);
-				
+				showScreenAnimal(stt);
 
 			}
 		});
@@ -106,7 +115,7 @@ public class Animal extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 
-				showScreenColor(stt);
+				showScreenAnimal(stt);
 
 			}
 		});
@@ -118,27 +127,65 @@ public class Animal extends Fragment {
 				playAudio(list.get(stt - 1).getAudio());
 			}
 		});
-		
+
 		IvTextOnOffAnimal.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// chay thu xem
+				
 				hide();
 
 			}
 		});
+		// show list view
+		IvList.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(root);
+				mydb = new Mydatabase(root);
+				listNew = new ArrayList<English>();
+				for (int i = 43; i < 63; i++) {
+
+					listNew.add(list.get(i));
+
+				}
+				ListView listTail = new ListView(root);
+				listTail.setAdapter(new ListAdapter(root
+						.getApplicationContext(), listNew));
+				listTail.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int position, long arg3) {
+
+						if (listDialog.isShowing()) {
+							listDialog.dismiss();
+
+						}
+
+						showScreenAnimal(position + 44);
+
+					}
+				});
+				builder.setView(listTail);
+				listDialog = builder.create();
+				listDialog.show();
+
+			}
+		});
 	}
+
 	boolean kt = true;
 
-	// chờ tui 1 tí
+	
 	public void hide() {
 		if (kt == true) {
 			textOnOffAnimal.setText("");
 			kt = false;
 		} else {
 			textOnOffAnimal.setText(list.get(stt - 1).getDecription());
-			// chay
+			
 			kt = true;
 
 		}
@@ -150,9 +197,10 @@ public class Animal extends Fragment {
 		// load image
 		try {
 			// get input stream
-			InputStream ims = assetManager.open("images/" + nameImageColor  + ".jpg");
+			InputStream ims = assetManager.open("images/" + nameImageColor
+					+ ".jpg");
 			Bitmap bitmap = BitmapFactory.decodeStream(ims);
-			// chay xem
+			
 			// set image to ImageView
 			IvAnimal.setImageBitmap(bitmap);
 		} catch (IOException ex) {
@@ -162,13 +210,13 @@ public class Animal extends Fragment {
 	}
 
 	// show screen
-	public void showScreenColor(int stt) {
+	public void showScreenAnimal(int stt) {
 		English english = new English();
-		english = list.get(stt -1 );
+		english = list.get(stt - 1);
 		textOnOffAnimal.setText(english.getDecription());
 		playAudio(english.getAudio());
 		loadDataFromAssetColor(english.getImage());
-		Log.d("--------",english.getImage());
+		Log.d("--------", english.getImage());
 
 	}
 
@@ -185,7 +233,7 @@ public class Animal extends Fragment {
 			mp.prepare();
 
 			mp.start();
-			mp.setVolume(10, 10);
+			mp.setVolume(100, 100);
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

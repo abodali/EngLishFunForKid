@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -18,11 +19,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.fpoly.adapter.ListAdapter;
 import com.fpoly.db.Mydatabase;
 import com.fpoly.englishfunforkid.R;
 import com.fpoly.object.English;
@@ -39,6 +44,8 @@ public class Letter extends Fragment {
 	ArrayList<English> list;
 	Context context;
 	MediaPlayer mp;
+	AlertDialog listDialog;
+	ArrayList<English>listNew;
 
 	public Letter() {
 	}
@@ -68,7 +75,7 @@ public class Letter extends Fragment {
 		textOnOffLetter = (TextView) rootView.findViewById(R.id.textOnOffLetter);
 		IvAudioLetter = (ImageView) rootView.findViewById(R.id.IvAudioLetter);
 		IvTextOnOffLetter = (ImageView) rootView.findViewById(R.id.IvTextOnOffLetter);
-		showScreenDay(90);
+		showScreenLetter(90);
 		IvNextLetter.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -79,7 +86,7 @@ public class Letter extends Fragment {
 				{
 					stt = 90;
 				}
-				showScreenDay(stt);
+				showScreenLetter(stt);
 			}
 		});
 		
@@ -93,7 +100,7 @@ public class Letter extends Fragment {
 					stt = 115;
 
 				} // }
-				showScreenDay(stt);
+				showScreenLetter(stt);
 				
 
 			}
@@ -103,7 +110,7 @@ public class Letter extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 
-				showScreenDay(stt);
+				showScreenLetter(stt);
 
 			}
 		});
@@ -120,23 +127,60 @@ public class Letter extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// chay thu xem
+				
 				hide();
 
 			}
 		});
+		// show list view
+				IvList.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(root);
+						mydb = new Mydatabase(root);
+						listNew = new ArrayList<English>();
+						for (int i = 89; i < 115; i++) {
+
+							listNew.add(list.get(i));
+
+						}
+						ListView listTail = new ListView(root);
+						listTail.setAdapter(new ListAdapter(root
+								.getApplicationContext(), listNew));
+						listTail.setOnItemClickListener(new OnItemClickListener() {
+
+							@Override
+							public void onItemClick(AdapterView<?> arg0, View arg1,
+									int position, long arg3) {
+
+								if (listDialog.isShowing()) {
+									listDialog.dismiss();
+
+								}
+
+								showScreenLetter(position + 90);
+
+							}
+						});
+						builder.setView(listTail);
+						listDialog = builder.create();
+						listDialog.show();
+
+					}
+				});
 	}
 	//
 	boolean kt = true;
 
-	// chờ tui 1 tí
+	
 	public void hide() {
 		if (kt == true) {
 			textOnOffLetter.setText("");
 			kt = false;
 		} else {
 			textOnOffLetter.setText(list.get(stt - 1).getDecription());
-			// chay
+			
 			kt = true;
 
 		}
@@ -150,7 +194,7 @@ public class Letter extends Fragment {
 			// get input stream
 			InputStream ims = assetManager.open("images/" + nameImageColor  + ".jpg");
 			Bitmap bitmap = BitmapFactory.decodeStream(ims);
-			// chay xem
+			
 			// set image to ImageView
 			IvLetter.setImageBitmap(bitmap);
 		} catch (IOException ex) {
@@ -160,7 +204,7 @@ public class Letter extends Fragment {
 	}
 
 	// show screen
-	public void showScreenDay(int stt) {
+	public void showScreenLetter(int stt) {
 		English english = new English();
 		english = list.get(stt -1 );
 		textOnOffLetter.setText(english.getDecription());
@@ -183,7 +227,7 @@ public class Letter extends Fragment {
 			mp.prepare();
 
 			mp.start();
-			mp.setVolume(10, 10);
+			mp.setVolume(100, 100);
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

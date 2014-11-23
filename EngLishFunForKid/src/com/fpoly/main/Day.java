@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -18,11 +19,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.fpoly.adapter.ListAdapter;
 import com.fpoly.db.Mydatabase;
 import com.fpoly.englishfunforkid.R;
 import com.fpoly.object.English;
@@ -39,6 +44,9 @@ public class Day extends Fragment {
 	ArrayList<English> list;
 	Context context;
 	MediaPlayer mp;
+	ArrayList<English>listNew;
+	AlertDialog listDialog;
+	ListAdapter apdater;
 
 	public Day() {
 	}
@@ -120,23 +128,60 @@ public class Day extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// chay thu xem
+				
 				hide();
 
 			}
 		});
+		// show list view
+				IvList.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(root);
+						mydb = new Mydatabase(root);
+						listNew = new ArrayList<English>();
+						for (int i = 63; i < 70; i++) {
+
+							listNew.add(list.get(i));
+
+						}
+						ListView listTail = new ListView(root);
+						listTail.setAdapter(new ListAdapter(root
+								.getApplicationContext(), listNew));
+						listTail.setOnItemClickListener(new OnItemClickListener() {
+
+							@Override
+							public void onItemClick(AdapterView<?> arg0, View arg1,
+									int position, long arg3) {
+
+								if (listDialog.isShowing()) {
+									listDialog.dismiss();
+
+								}
+
+								showScreenDay(position + 64);
+
+							}
+						});
+						builder.setView(listTail);
+						listDialog = builder.create();
+						listDialog.show();
+
+					}
+				});
 	}
 	//
 	boolean kt = true;
 
-	// chờ tui 1 tí
+	
 	public void hide() {
 		if (kt == true) {
 			textOnOffDay.setText("");
 			kt = false;
 		} else {
 			textOnOffDay.setText(list.get(stt - 1).getDecription());
-			// chay
+			
 			kt = true;
 
 		}
@@ -150,7 +195,7 @@ public class Day extends Fragment {
 			// get input stream
 			InputStream ims = assetManager.open("images/" + nameImageColor  + ".jpg");
 			Bitmap bitmap = BitmapFactory.decodeStream(ims);
-			// chay xem
+			
 			// set image to ImageView
 			IvDay.setImageBitmap(bitmap);
 		} catch (IOException ex) {
@@ -183,7 +228,7 @@ public class Day extends Fragment {
 			mp.prepare();
 
 			mp.start();
-			mp.setVolume(10, 10);
+			mp.setVolume(100, 100);
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

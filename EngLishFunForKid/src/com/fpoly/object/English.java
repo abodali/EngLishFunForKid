@@ -36,6 +36,10 @@ public class English {
 	public void setDecription(String decription) {
 		Decription = decription;
 	}
+	public String toString(){
+		
+		return Decription;
+	}
 
 	private int Id;
 	private String Image;
